@@ -18,9 +18,7 @@ gradle-wrapper.properties
 
 # 환경파일 (예: application-local.yml, .env 등)
 *.env
-*.env.*
-application-*.yml
-application-*.properties
+*.env
 
 # ========================
 # 🖥️ IDE 설정
