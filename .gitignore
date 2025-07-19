@@ -1,37 +1,77 @@
-HELP.md
-.gradle
-build/
-!gradle/wrapper/gradle-wrapper.jar
+# ========================
+# 🔧 Java & Gradle 설정
+# ========================
+/build/
+.gradle/
+/out/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-### STS ###
-.apt_generated
-.classpath
-.factorypath
-.project
-.settings
-.springBeans
-.sts4-cache
-bin/
-!**/src/main/**/bin/
-!**/src/test/**/bin/
+# Gradle Wrapper
+!gradle/wrapper/gradle-wrapper.jar
+gradle-wrapper.properties
+
+# Gradle 캐시 및 로그
+**/build/
+**/bin/
+**/*.log
+
+# 환경파일 (예: application-local.yml, .env 등)
+*.env
+*.env.*
+application-*.yml
+application-*.properties
+
+# ========================
+# 🖥️ IDE 설정
+# ========================
 
 ### IntelliJ IDEA ###
-.idea
+.idea/
 *.iws
 *.iml
 *.ipr
+
+# IntelliJ 빌드 결과
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
 
-### NetBeans ###
-/nbproject/private/
-/nbbuild/
-/dist/
-/nbdist/
-/.nb-gradle/
+### STS (Spring Tool Suite) ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings/
+.springBeans
+.sts4-cache
 
-### VS Code ###
+### Eclipse ###
+*.launch
+.metadata/
+*.tmp
+*.bak
+*.swp
+*.swo
+*.DS_Store
+
+# ========================
+# 🪟 Windows 관련
+# ========================
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# ========================
+# 🧪 테스트 관련
+# ========================
+test-output/
+coverage/
+jacoco.exec
+
+# ========================
+# 🔧 VS Code
+# ========================
 .vscode/
+.history/
