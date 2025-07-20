@@ -1,12 +1,12 @@
 plugins {
     id 'java'
-    id 'org.springframework.boot' version '3.2.5'
-    id 'io.spring.dependency-management' version '1.1.5'
+    id 'org.springframework.boot' version '3.4.5'
+    id 'io.spring.dependency-management' version '1.1.7'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17' // 또는 21
+sourceCompatibility = '17'
 
 repositories {
     mavenCentral()
@@ -15,15 +15,12 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-
-    runtimeOnly 'org.postgresql:postgresql' // PostgreSQL JDBC 드라이버
-
-    implementation 'org.jsoup:jsoup:1.17.2' // GitHub HTML 파싱용
-
-    implementation 'org.springframework.boot:spring-boot-starter-scheduling' // @Scheduled
-
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+    implementation("me.paulschwarz:spring-dotenv:4.0.0")
+    runtimeOnly 'org.postgresql:postgresql'
+    // GitHub HTML 파싱용
+    implementation 'org.jsoup:jsoup:1.17.2'
     compileOnly 'org.projectlombok:lombok'
     annotationProcessor 'org.projectlombok:lombok'
-
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
