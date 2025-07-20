@@ -42,13 +42,14 @@ grass-challenge/
 ├── src/
 │ ├── main/
 │ │ ├── java/com/example/grass/
-│ │ │ ├── user/ # 사용자 관련 도메인
+│ │ │ ├── member/ # 사용자 관련 도메인
 │ │ │ ├── scheduler/ # 잔디 체크 스케줄러
 │ │ │ ├── github/ # 잔디 조회 서비스
 │ │ │ └── slack/ # 슬랙 메시지 서비스
 │ └── resources/
 │ └── application.yml
 ├── README.md
+├── .env
 └── build.gradle
 ```
 
@@ -60,22 +61,11 @@ grass-challenge/
 1. Supabase에 유저 테이블 생성
 2. GitHub ID 및 Slack Webhook 등록
 3. Spring Boot 서버 실행
-4. 매일 새벽 1시 자동 실행 (잔디 체크 & 슬랙 알림)
+4. 매일 아침 9시 자동 실행 (잔디 심기 독려)
+5. 매일 저녁 9시 자동 실행 (잔디 체크 & 슬랙 알림)
 
 > 초기에는 수동으로 실행해도 OK.  
 > 이후 GitHub Actions 또는 Cloudtype을 통해 주기적 실행 가능.
-
-<br/>
-
-## 📅 일정 (예시)
-
-| 날짜 | 할 일 |
-|------|--------|
-| Day 1 | 레포 생성, README, DB 설계 |
-| Day 2 | 유저 등록 기능, GitHub 잔디 조회 |
-| Day 3 | Slack 알림, 스케줄링 |
-| Day 4 | 배포 및 테스트 |
-| Day 5~ | 챌린지 시작 🎉 |
 
 <br/>
 
