@@ -1,17 +1,19 @@
 package com.example.grasschallenge.domain.member.entity;
 
 import com.example.grasschallenge.common.BaseEntity;
+import com.example.grasschallenge.domain.commitlog.entity.CommitLog;
+import com.example.grasschallenge.domain.notificationlog.entity.NotificationLog;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
-@Builder
 @EntityListeners(AuditingEntityListener.class)
 public class Member extends BaseEntity {
 
@@ -41,17 +43,28 @@ public class Member extends BaseEntity {
     @Enumerated(EnumType.STRING)
     private NotificationStatus notificationStatus;
 
-    // TODO: 커밋/알림 로그 기능 추가 시 활성화 예정
-//    // CommitLog와의 1:N 관계 (멤버가 여러 커밋 기록을 가질 수 있음)
-//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<CommitLog> commitLogs;
-//
-//    // NotificationLog와의 1:N 관계 (멤버가 여러 알림 기록을 가질 수 있음)
-//    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<NotificationLog> notificationLogs;
+    // CommitLog와의 1:N 관계 (멤버가 여러 커밋 기록을 가질 수 있음)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CommitLog> commitLogs;
+
+    // NotificationLog와의 1:N 관계 (멤버가 여러 알림 기록을 가질 수 있음)
+    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<NotificationLog> notificationLogs;
 
     public void updateLastCommitTime(LocalDateTime time) {
         this.lastCommitAt = time;
+    }
+
+    @Builder
+    public Member(String slackId, String nickname, String githubUsername, String githubToken, LocalDateTime lastCommitAt, NotificationStatus notificationStatus, List<CommitLog> commitLogs, List<NotificationLog> notificationLogs) {
+        this.slackId = slackId;
+        this.nickname = nickname;
+        this.githubUsername = githubUsername;
+        this.githubToken = githubToken;
+        this.lastCommitAt = lastCommitAt;
+        this.notificationStatus = notificationStatus;
+        this.commitLogs = commitLogs;
+        this.notificationLogs = notificationLogs;
     }
 
 }
