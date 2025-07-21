@@ -48,7 +48,11 @@ public class Member extends BaseEntity {
 //
 //    // NotificationLog와의 1:N 관계 (멤버가 여러 알림 기록을 가질 수 있음)
 //    @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-//    private List<NotificationLog> notificationLogs;
+/**
+     * Updates the timestamp of the member's last commit.
+     *
+     * @param time the new last commit time to set
+     */
 
     public void updateLastCommitTime(LocalDateTime time) {
         this.lastCommitAt = time;
