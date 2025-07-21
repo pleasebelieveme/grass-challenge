@@ -8,6 +8,7 @@ import lombok.*;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -45,15 +46,11 @@ public class Member extends BaseEntity {
 
     // CommitLog와의 1:N 관계 (멤버가 여러 커밋 기록을 가질 수 있음)
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CommitLog> commitLogs;
+    private List<CommitLog> commitLogs = new ArrayList<>();
 
     // NotificationLog와의 1:N 관계 (멤버가 여러 알림 기록을 가질 수 있음)
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<NotificationLog> notificationLogs;
-
-    public void updateLastCommitTime(LocalDateTime time) {
-        this.lastCommitAt = time;
-    }
+    private List<NotificationLog> notificationLogs = new ArrayList<>();
 
     @Builder
     public Member(String slackId, String nickname, String githubUsername, String githubToken, LocalDateTime lastCommitAt, NotificationStatus notificationStatus, List<CommitLog> commitLogs, List<NotificationLog> notificationLogs) {
@@ -65,6 +62,10 @@ public class Member extends BaseEntity {
         this.notificationStatus = notificationStatus;
         this.commitLogs = commitLogs;
         this.notificationLogs = notificationLogs;
+    }
+
+    public void updateLastCommitAt(LocalDateTime time) {
+        this.lastCommitAt = time;
     }
 
 }
